@@ -1,8 +1,22 @@
 import os
 from discord.ext import commands
 from dotenv import load_dotenv
-import os
 from supabase import create_client, Client
+from flask import Flask
+from threading import Thread
+
+app = Flask(__name__)
+
+@app.route('/')
+def home():
+    return "Bot is running!"
+
+def run():
+    app.run(host='0.0.0.0', port=8080)
+
+# 在啟動 Bot 之前啟動這個線程
+t = Thread(target=run)
+t.start()
 
 # 載入 .env 檔案
 load_dotenv()
