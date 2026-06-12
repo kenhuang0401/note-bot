@@ -34,6 +34,7 @@ supabase: Client = create_client(url, key)
 try:
     from discord import Intents
     intents = Intents.default()
+    intents.message_content = True
 except Exception:
     intents = None
 
